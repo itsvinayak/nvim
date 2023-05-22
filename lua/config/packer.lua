@@ -29,7 +29,6 @@ return require('packer').startup(function(use)
   use("tpope/vim-fugitive")
   use("nvim-treesitter/nvim-treesitter-context");
   use({ 'rose-pine/neovim', as = 'rose-pine' })
-  use({ 'rose-pine/neovim', as = 'rose-pine' })
   use("nvim-treesitter/playground")
   use {
 	  'VonHeikemen/lsp-zero.nvim',

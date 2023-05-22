@@ -1,3 +1,3 @@
-require("./config/main.lua")
+require("config.main")
 
 print("Config Working . . .")
