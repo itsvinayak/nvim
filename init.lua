@@ -1,2 +1,3 @@
 require("config.main")
-print("vinayak")
+
+print("Config Working . . .")
