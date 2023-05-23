@@ -62,5 +62,4 @@ return require('packer').startup(function(use)
   use { "ellisonleao/gruvbox.nvim" }
   -- for commenting
   use { "numToStr/Comment.nvim" }
-
 end)
