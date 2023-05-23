@@ -57,6 +57,10 @@ return require('packer').startup(function(use)
   use({"eandrju/cellular-automaton.nvim"})
   use({"github/copilot.vim"})
   use({"laytan/cloak.nvim"})
+
   -- color scheme
   use { "ellisonleao/gruvbox.nvim" }
+  -- for commenting
+  use { "numToStr/Comment.nvim" }
+
 end)
