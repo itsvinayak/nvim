@@ -24,6 +24,10 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    -- barbar
+    use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
+    use 'lewis6991/gitsigns.nvim'     -- OPTIONAL: for git status
+    use 'romgrk/barbar.nvim'
     use("nvim-treesitter/nvim-treesitter")
     use("mbbill/undotree")
     use("tpope/vim-fugitive")
