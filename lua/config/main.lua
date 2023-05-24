@@ -4,9 +4,17 @@ require("config.setup")
 
 local augroup = vim.api.nvim_create_augroup
 local luaNvimGroup = augroup('luaNvim', {})
+local luaNvimFormatGroup = augroup('luaNvim', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
+
+-- auto format on save
+autocmd({"BufWritePre"}, {
+    group = luaNvimFormatGroup,
+    pattern = "*",
+    command = [[lua vim.lsp.buf.format()]],
+})
 
 function R(name)
     require("plenary.reload").reload_module(name)
