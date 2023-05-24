@@ -7,19 +7,29 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+
+
+-- tab navigation
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+map('n', '<C-TAB>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<TAB>', '<Cmd>BufferNext<CR>', opts)
+-- Re-order to previous/next
+map('n', '<C-n>', '<Cmd>tabnew<CR>', opts)
+map('n', '<C-w>', '<Cmd>BufferClose<CR>', opts)
 
 -- vim.keymap.set("n", "<leader>key", function()
-    -- require("file).function()
+-- require("file).function()
 -- end)
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This will bring back to normal mode
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -40,4 +50,3 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
-
