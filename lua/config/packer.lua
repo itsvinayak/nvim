@@ -34,6 +34,12 @@ return require('packer').startup(function(use)
     use("nvim-treesitter/nvim-treesitter-context");
     use({ 'rose-pine/neovim', as = 'rose-pine' })
     use("nvim-treesitter/playground")
+    -- below line
+    use({
+        "glepnir/galaxyline.nvim",
+        -- some optional icons
+        requires = { "nvim-tree/nvim-web-devicons", opt = true }
+    })
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
