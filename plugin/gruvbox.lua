@@ -19,7 +19,7 @@ require("gruvbox").setup({
     contrast = "hard", -- can be "hard", "soft" or empty string
     palette_overrides = {},
     overrides = {},
-    dim_inactive = true,
-    transparent_mode = true,
+    dim_inactive = false,
+    transparent_mode = false,
 })
 vim.cmd("colorscheme gruvbox")

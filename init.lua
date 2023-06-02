@@ -1,3 +1,3 @@
 require("config.main")
 
-print("Config Working . . .")
+require("notify")("Config Working . . .", "warning")

@@ -11,10 +11,16 @@ local ensure_packer = function()
     return false
 end
 
--- local packer_bootstrap = ensure_packer()
+local packer_bootstrap = ensure_packer()
 
+
+if packer_bootstrap then
+    print("Downloading packer.nvim... Please restart vim")
+    return
+end
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
+
 
 return require('packer').startup(function(use)
     -- Packer can manage itself
@@ -106,4 +112,39 @@ return require('packer').startup(function(use)
         }
     }
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
+
+    -- which key
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
+
+    -- general debbugging
+    use {
+        "mfussenegger/nvim-dap",
+        opt = true,
+        event = "BufReadPre",
+        module = { "dap" },
+        wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
+        requires = {
+            "Pocco81/DAPInstall.nvim",
+            "theHamsta/nvim-dap-virtual-text",
+            "rcarriga/nvim-dap-ui",
+            "mfussenegger/nvim-dap-python",
+            "nvim-telescope/telescope-dap.nvim",
+            { "jbyuki/one-small-step-for-vimkind", module = "osv" }
+        }
+    }
+    use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+    -- need for nvim-ui
+    use { "folke/neodev.nvim" }
+    use { 'rcarriga/nvim-notify' }
 end)
