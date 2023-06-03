@@ -15,6 +15,7 @@ vim.cmd([[
   augroup END
 ]])
 
+vim.reload_config_on_save = false
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.opt.nu = true

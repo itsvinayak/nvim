@@ -114,19 +114,7 @@ return require('packer').startup(function(use)
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
     -- which key
-    use {
-        "folke/which-key.nvim",
-        config = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-            require("which-key").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
-    }
-
+    use { "folke/which-key.nvim" }
     -- general debbugging
     use {
         "mfussenegger/nvim-dap",
@@ -151,4 +139,12 @@ return require('packer').startup(function(use)
             background_colour = "#000000"
         }, opts))
     end }
+    -- startup screen
+    use {
+        "startup-nvim/startup.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+        config = function()
+            require "startup".setup()
+        end
+    }
 end)
