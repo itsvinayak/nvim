@@ -7,6 +7,13 @@ vim.cmd([[
   augroup end
 ]])
 
+-- hidding tmux status line
+vim.cmd([[
+  augroup DisableTmuxStatus
+    autocmd!
+    autocmd VimEnter,VimLeave * silent !tmux set status off
+  augroup END
+]])
 
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
