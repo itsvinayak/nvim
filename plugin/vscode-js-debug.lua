@@ -10,23 +10,23 @@ require('dap-vscode-js').setup({
 
 
 
--- -- custom adapter for running tasks before starting debug
--- local custom_adapter = 'pwa-node-custom'
--- dap.adapters[custom_adapter] = function(cb, config)
---     if config.preLaunchTask then
---         local async = require('plenary.async')
---         local notify = require('notify').async
---
---         async.run(function()
---             ---@diagnostic disable-next-line: missing-parameter
---             notify('Running [' .. config.preLaunchTask .. ']').events.close()
---         end, function()
---             vim.fn.system(config.preLaunchTask)
---             config.type = 'pwa-node'
---             dap.run(config)
---         end)
---     end
--- end
+-- custom adapter for running tasks before starting debug
+local custom_adapter = 'pwa-node-custom'
+dap.adapters[custom_adapter] = function(cb, config)
+    if config.preLaunchTask then
+        local async = require('plenary.async')
+        local notify = require('notify').async
+
+        async.run(function()
+            ---@diagnostic disable-next-line: missing-parameter
+            notify('Running [' .. config.preLaunchTask .. ']').events.close()
+        end, function()
+            vim.fn.system(config.preLaunchTask)
+            config.type = 'pwa-node'
+            dap.run(config)
+        end)
+    end
+end
 
 local dap = require('dap')
 
