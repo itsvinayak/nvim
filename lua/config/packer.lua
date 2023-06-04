@@ -9,17 +9,6 @@ local ensure_packer = function()
     end
     return false
 end
--- -- git clone https://github.com/mxsdev/nvim-dap-vscode-js.git
--- local fixes = function()
---     local fn = vim.fn
---     local install_path = fn.stdpath("data") .. "/site/pack/packer/start/dap-vscode-js.nvim"
---     if fn.empty(fn.glob(install_path)) > 0 then
---         fn.system({"git", "clone", "--depth", "1", "https://github.com/mxsdev/nvim-dap-vscode-js.git", install_path})
---         vim.cmd [[packadd dap-vscode-js.nvim]]
---         return true
---     end
---     return false
--- end
 
 local packer_bootstrap = ensure_packer()
 
@@ -80,26 +69,27 @@ return require("packer").startup(function(use)
     use {"laytan/cloak.nvim"}
 
     -- general debbugging
+    use {"mfussenegger/nvim-dap"}
     use {
-        "mfussenegger/nvim-dap",
+        "mxsdev/nvim-dap-vscode-js",
+        requires = {"mfussenegger/nvim-dap"}
+    }
+    use {"mfussenegger/nvim-dap-python"}
+    use {"theHamsta/nvim-dap-virtual-text"}
+    use {"nvim-telescope/telescope-dap.nvim"}
+    use {
+        "microsoft/vscode-js-debug",
         opt = true,
-        module = {"dap"},
-        requires = {"theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui", "mfussenegger/nvim-dap-python",
-                    "nvim-telescope/telescope-dap.nvim", {
-            "jbyuki/one-small-step-for-vimkind",
-            module = "osv"
-        }, {
-            "mxsdev/nvim-dap-vscode-js",
-            module = {"dap-vscode-js"}
-        }, {
-            "microsoft/vscode-js-debug",
-            opt = true,
-            run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-        }},
-        config = function()
-            require("config.dap").setup()
-        end,
-        disable = false
+        run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+    }
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {"mfussenegger/nvim-dap"}
+    }
+
+    use {
+        "jbyuki/one-small-step-for-vimkind",
+        module = "osv"
     }
 
     -- color scheme
@@ -158,7 +148,7 @@ return require("packer").startup(function(use)
         "startup-nvim/startup.nvim",
         requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
         config = function()
-            require"startup".setup()
+          require("startup").setup({theme = "evil", plugins = {"telescope"}})
         end
-    }
+      }
 end)
