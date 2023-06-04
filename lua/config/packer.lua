@@ -118,10 +118,15 @@ return require("packer").startup(function(use)
                     "mfussenegger/nvim-dap-python", "nvim-telescope/telescope-dap.nvim", {
             "jbyuki/one-small-step-for-vimkind",
             module = "osv"
+        }, {
+            "microsoft/vscode-js-debug",
+            opt = true,
+            run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
         }}
     }
     use {
         "mxsdev/nvim-dap-vscode-js",
+        module = {"dap-vscode-js"},
         requires = {"mfussenegger/nvim-dap"}
     }
     -- need for nvim-ui
