@@ -17,12 +17,13 @@ if packer_bootstrap then
     require("packer").sync()
     return
 end
+
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
 return require("packer").startup(function(use)
     -- Packer can manage itself
-    use "wbthomason/packer.nvim"
+    use {"wbthomason/packer.nvim"}
     use {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.0",
@@ -32,24 +33,27 @@ return require("packer").startup(function(use)
     use "nvim-tree/nvim-web-devicons" -- OPTIONAL: for file icons
     use "lewis6991/gitsigns.nvim" -- OPTIONAL: for git status
     use "romgrk/barbar.nvim"
-    use("nvim-treesitter/nvim-treesitter")
-    use("mbbill/undotree")
-    use("tpope/vim-fugitive")
-    use("nvim-treesitter/nvim-treesitter-context");
-    use({
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate"
+    }
+    use {"mbbill/undotree"}
+    use {"tpope/vim-fugitive"}
+    use {"nvim-treesitter/nvim-treesitter-context"}
+    use {
         "rose-pine/neovim",
         as = "rose-pine"
-    })
-    use("nvim-treesitter/playground")
+    }
+    use {"nvim-treesitter/playground"}
     -- below line
-    use({
+    use {
         "glepnir/galaxyline.nvim",
         -- some optional icons
         requires = {
             "nvim-tree/nvim-web-devicons",
             opt = true
         }
-    })
+    }
     use {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v1.x",
@@ -62,10 +66,32 @@ return require("packer").startup(function(use)
         {"L3MON4D3/LuaSnip"}, {"rafamadriz/friendly-snippets"}}
     }
 
-    use({"folke/zen-mode.nvim"})
-    use({"eandrju/cellular-automaton.nvim"})
-    use({"github/copilot.vim"})
-    use({"laytan/cloak.nvim"})
+    use {"folke/zen-mode.nvim"}
+    use {"eandrju/cellular-automaton.nvim"}
+    use {"github/copilot.vim"}
+    use {"laytan/cloak.nvim"}
+
+    -- general debbugging
+    use {
+        "mfussenegger/nvim-dap",
+        opt = true,
+        event = "BufReadPre",
+        module = {"dap"},
+        requires = {"Pocco81/DAPInstall.nvim", "theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui",
+                    "mfussenegger/nvim-dap-python", "nvim-telescope/telescope-dap.nvim", {
+            "jbyuki/one-small-step-for-vimkind",
+            module = "osv"
+        }, {
+            "microsoft/vscode-js-debug",
+            opt = true,
+            run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
+        }}
+    }
+    use {
+        "mxsdev/nvim-dap-vscode-js",
+        module = {"dap-vscode-js"},
+        requires = {"mfussenegger/nvim-dap"}
+    }
 
     -- color scheme
     use {"ellisonleao/gruvbox.nvim"}
@@ -107,28 +133,7 @@ return require("packer").startup(function(use)
 
     -- which key
     use {"folke/which-key.nvim"}
-    -- general debbugging
-    use {
-        "mfussenegger/nvim-dap",
-        opt = true,
-        event = "BufReadPre",
-        module = {"dap"},
-        wants = {"nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim"},
-        requires = {"Pocco81/DAPInstall.nvim", "theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui",
-                    "mfussenegger/nvim-dap-python", "nvim-telescope/telescope-dap.nvim", {
-            "jbyuki/one-small-step-for-vimkind",
-            module = "osv"
-        }, {
-            "microsoft/vscode-js-debug",
-            opt = true,
-            run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-        }}
-    }
-    use {
-        "mxsdev/nvim-dap-vscode-js",
-        module = {"dap-vscode-js"},
-        requires = {"mfussenegger/nvim-dap"}
-    }
+
     -- need for nvim-ui
     use {"folke/neodev.nvim"}
     use {
