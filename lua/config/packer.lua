@@ -9,6 +9,17 @@ local ensure_packer = function()
     end
     return false
 end
+-- -- git clone https://github.com/mxsdev/nvim-dap-vscode-js.git
+-- local fixes = function()
+--     local fn = vim.fn
+--     local install_path = fn.stdpath("data") .. "/site/pack/packer/start/dap-vscode-js.nvim"
+--     if fn.empty(fn.glob(install_path)) > 0 then
+--         fn.system({"git", "clone", "--depth", "1", "https://github.com/mxsdev/nvim-dap-vscode-js.git", install_path})
+--         vim.cmd [[packadd dap-vscode-js.nvim]]
+--         return true
+--     end
+--     return false
+-- end
 
 local packer_bootstrap = ensure_packer()
 
@@ -49,10 +60,7 @@ return require("packer").startup(function(use)
     use {
         "glepnir/galaxyline.nvim",
         -- some optional icons
-        requires = {
-            "nvim-tree/nvim-web-devicons",
-            opt = true
-        }
+        requires = {"nvim-tree/nvim-web-devicons"}
     }
     use {
         "VonHeikemen/lsp-zero.nvim",
@@ -75,22 +83,23 @@ return require("packer").startup(function(use)
     use {
         "mfussenegger/nvim-dap",
         opt = true,
-        event = "BufReadPre",
         module = {"dap"},
-        requires = {"Pocco81/DAPInstall.nvim", "theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui",
-                    "mfussenegger/nvim-dap-python", "nvim-telescope/telescope-dap.nvim", {
+        requires = {"theHamsta/nvim-dap-virtual-text", "rcarriga/nvim-dap-ui", "mfussenegger/nvim-dap-python",
+                    "nvim-telescope/telescope-dap.nvim", {
             "jbyuki/one-small-step-for-vimkind",
             module = "osv"
+        }, {
+            "mxsdev/nvim-dap-vscode-js",
+            module = {"dap-vscode-js"}
         }, {
             "microsoft/vscode-js-debug",
             opt = true,
             run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
-        }}
-    }
-    use {
-        "mxsdev/nvim-dap-vscode-js",
-        module = {"dap-vscode-js"},
-        requires = {"mfussenegger/nvim-dap"}
+        }},
+        config = function()
+            require("config.dap").setup()
+        end,
+        disable = false
     }
 
     -- color scheme

@@ -55,14 +55,14 @@ local function configure_debuggers()
     -- require("config.dap.python").setup()
     -- require("config.dap.rust").setup()
     -- require("config.dap.go").setup()
-    require("plugin.dap.vscode-js-debug").setup()
+    require("plugin.dap.js").setup()
 end
 
 function dapFunction.setup()
     configure()                           -- Configuration
     configure_exts()                      -- Extensions
     configure_debuggers()                 -- Debugger
-    require("config.dap.keymaps").setup() -- Keymaps
+    -- require("config.dap.keymaps").setup() -- Keymaps
 end
 
 configure_debuggers()
