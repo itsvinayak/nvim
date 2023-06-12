@@ -1,4 +1,3 @@
-
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -23,7 +22,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
 -- auto format on save
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = luaNvimFormatGroup,
     pattern = "*",
     command = [[lua vim.lsp.buf.format()]],
@@ -40,7 +39,7 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = luaNvimGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
