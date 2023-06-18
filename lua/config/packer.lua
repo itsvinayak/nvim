@@ -93,7 +93,9 @@ return require("packer").startup(function(use)
     }
 
     -- color scheme
-    use { "ellisonleao/gruvbox.nvim" }
+    -- use { "ellisonleao/gruvbox.nvim" }
+    use { 'nyoom-engineering/oxocarbon.nvim' }
+
     -- for commenting
     use { "numToStr/Comment.nvim" }
 
@@ -152,4 +154,14 @@ return require("packer").startup(function(use)
         end
     }
     use "lukas-reineke/indent-blankline.nvim"
+    -- clipboard manager
+    use {
+        "AckslD/nvim-neoclip.lua",
+        requires = {
+            "tami5/sqlite.lua",
+            module = "sqlite",
+            { 'nvim-telescope/telescope.nvim' },
+            { 'ibhagwan/fzf-lua' }
+        }
+    }
 end)
