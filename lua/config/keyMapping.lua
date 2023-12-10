@@ -1,60 +1,52 @@
-vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.g.mapleader = "<Space>"
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.api.nvim_set_keymap("n", "<leader>pv", ":Ex<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 
 -- tab navigation
 local map = vim.api.nvim_set_keymap
-local opts = {
-    noremap = true,
-    silent = true
-}
+local opts = { noremap = true, silent = true }
 
--- debugKeyMappingove to previous/next
+-- Debugging: move to previous/next
 map('n', '<C-TAB>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<TAB>', '<Cmd>BufferNext<CR>', opts)
 -- Re-order to previous/next
 map('n', '<C-n>', '<Cmd>tabnew<CR>', opts)
 map('n', '<C-w>', '<Cmd>BufferClose<CR>', opts)
 
--- vim.keymap.set("n", "<leader>key", function()
--- require("file).function()
--- end)
+-- vim.api.nvim_set_keymap("n", "<leader>key", function()
+--     require("file").function()
+-- end, opts)
 
-vim.keymap.set("x", "<leader>p", [["_dP]])
-
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', opts)
+vim.api.nvim_set_keymap({"n", "v"}, "<leader>y", '"+y', opts)
+vim.api.nvim_set_keymap("n", "<leader>Y", '"+Y', opts)
+vim.api.nvim_set_keymap({"n", "v"}, "<leader>d", '"_d', opts)
 
 -- This will bring back to normal mode
-vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.api.nvim_set_keymap("i", "<C-c>", "<Esc>", opts)
 
-vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.api.nvim_set_keymap("n", "Q", "<nop>", opts)
+vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>f", vim.lsp.buf.format, opts)
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>cnext<CR>zz", opts)
+vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>cprev<CR>zz", opts)
+vim.api.nvim_set_keymap("n", "<leader>k", "<cmd>lnext<CR>zz", opts)
+vim.api.nvim_set_keymap("n", "<leader>j", "<cmd>lprev<CR>zz", opts)
+vim.api.nvim_set_keymap("n", "<leader>s", "[[:%s/<<C-r><C-w>>/<C-r><C-w>/gI<Left><Left><Left>]]", opts)
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", {
-    silent = true
-})
+vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
 
-vim.keymap.set("n", "<leader><leader>", function()
+vim.api.nvim_set_keymap("n", "<leader><leader>", function()
     vim.cmd("so")
-end)
+end, opts)
 
--- debugging
+-- Debugging
 local debugKeyMapping = {}
 
 local whichkey = require "which-key"
@@ -112,3 +104,4 @@ function debugKeyMapping.setup()
 end
 
 return debugKeyMapping
+

@@ -1,6 +1,11 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+function gitStatus ()
+    vim.fn.system("git status")
+end
 
-local fugitive_plugin_g = vim.api.nvim_create_augroup("fugitive_plugin_g ", {})
+
+vim.api.nvim_set_keymap("n", "<leader>gs", gitStatus,{ noremap = true, silent = true })
+
+
 
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("BufWinEnter", {
@@ -12,18 +17,19 @@ autocmd("BufWinEnter", {
         end
 
         local bufnr = vim.api.nvim_get_current_buf()
-        local opts = {buffer = bufnr, remap = false}
-        vim.keymap.set("n", "<leader>p", function()
-            vim.cmd.Git('push')
+        local opts = { buffer = bufnr, remap = false }
+
+        -- Push
+        vim.api.nvim_set_keymap("n", "<leader>p", function()
+            vim.fn.system("Git push")
         end, opts)
 
-        -- rebase always
-        vim.keymap.set("n", "<leader>P", function()
-            vim.cmd.Git({'pull',  '--rebase'})
+        -- Pull with rebase
+        vim.api.nvim_set_keymap("n", "<leader>P", function()
+            vim.fn.system("Git pull --rebase")
         end, opts)
 
-        -- NOTE: It allows me to easily set the branch i am pushing and any tracking
-        -- needed if i did not set the branch up correctly
-        vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
-    end,
+        -- Custom Git push with tracking
+        vim.api.nvim_set_keymap("n", "<leader>t", ":Git push -u origin ", opts)
+    end
 })
