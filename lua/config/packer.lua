@@ -93,8 +93,8 @@ return require("packer").startup(function(use)
     }
 
     -- color scheme
-    -- use { "ellisonleao/gruvbox.nvim" }
-    use {'nyoom-engineering/oxocarbon.nvim'}
+    use { "ellisonleao/gruvbox.nvim" }
+    -- use {'nyoom-engineering/oxocarbon.nvim'}
 
     -- for commenting
     use {"numToStr/Comment.nvim"}
