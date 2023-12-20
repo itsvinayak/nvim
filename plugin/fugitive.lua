@@ -3,7 +3,7 @@ function gitStatus ()
 end
 
 
-vim.api.nvim_set_keymap("n", "<leader>gs", gitStatus,{ noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gs", "<Cmd>gitStatus<CR>",{ noremap = true, silent = true })
 
 
 

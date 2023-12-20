@@ -55,7 +55,7 @@ end
 vim.api.nvim_set_keymap("n", "<leader><leader>", ":lua keymap_function()<CR>", opts)
 
 -- Debugging
-local debugKeyMappig = {}
+local debugKeyMapping = {}
 
 local whichkey = require "which-key"
 
