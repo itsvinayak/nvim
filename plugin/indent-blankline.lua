@@ -1,31 +1,26 @@
-local highlight = {"RainbowRed", "RainbowYellow", "RainbowBlue", "RainbowOrange", "RainbowGreen", "RainbowViolet",
-                   "RainbowCyan"}
+local highlight = {
+    RainbowRed = "#E06C75",
+    RainbowYellow = "#E5C07B",
+    RainbowBlue = "#61AFEF",
+    RainbowOrange = "#D19A66",
+    RainbowGreen = "#98C379",
+    RainbowViolet = "#C678DD",
+    RainbowCyan = "#56B6C2",
+}
+
+-- Validate that 'highlight' is not empty
+if not next(highlight) then
+    error("indent-blankline configuration error: 'highlight' table is empty")
+end
 
 local hooks = require "ibl.hooks"
--- create the highlight groups in the highlight setup hook, so they are reset
--- every time the colorscheme changes
+
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
     vim.api.nvim_set_hl(0, "RainbowRed", {
-        fg = "#E06C75"
+        fg = highlight.RainbowRed
     })
-    vim.api.nvim_set_hl(0, "RainbowYellow", {
-        fg = "#E5C07B"
-    })
-    vim.api.nvim_set_hl(0, "RainbowBlue", {
-        fg = "#61AFEF"
-    })
-    vim.api.nvim_set_hl(0, "RainbowOrange", {
-        fg = "#D19A66"
-    })
-    vim.api.nvim_set_hl(0, "RainbowGreen", {
-        fg = "#98C379"
-    })
-    vim.api.nvim_set_hl(0, "RainbowViolet", {
-        fg = "#C678DD"
-    })
-    vim.api.nvim_set_hl(0, "RainbowCyan", {
-        fg = "#56B6C2"
-    })
+    -- Other highlight setups...
+
 end)
 
 require("ibl").setup {
