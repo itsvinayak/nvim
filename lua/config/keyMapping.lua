@@ -23,16 +23,23 @@ map('n', '<C-w>', '<Cmd>BufferClose<CR>', opts)
 -- end, opts)
 
 vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', opts)
-vim.api.nvim_set_keymap({"n", "v"}, "<leader>y", '"+y', opts)
+vim.api.nvim_set_keymap("v", "<leader>y", '"+y', opts)
+vim.api.nvim_set_keymap("n", "<leader>y", '"+y', opts)
 vim.api.nvim_set_keymap("n", "<leader>Y", '"+Y', opts)
-vim.api.nvim_set_keymap({"n", "v"}, "<leader>d", '"_d', opts)
+vim.api.nvim_set_keymap("n", "<leader>d", '"_d', opts)
+vim.api.nvim_set_keymap("v", "<leader>d", '"_d', opts)
 
 -- This will bring back to normal mode
 vim.api.nvim_set_keymap("i", "<C-c>", "<Esc>", opts)
 
 vim.api.nvim_set_keymap("n", "Q", "<nop>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>f", vim.lsp.buf.format, opts)
+vim.api.nvim_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+
+
+
 
 vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>cnext<CR>zz", opts)
 vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>cprev<CR>zz", opts)
@@ -42,12 +49,13 @@ vim.api.nvim_set_keymap("n", "<leader>s", "[[:%s/<<C-r><C-w>>/<C-r><C-w>/gI<Left
 
 vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
 
-vim.api.nvim_set_keymap("n", "<leader><leader>", function()
+function keymap_function ()
     vim.cmd("so")
-end, opts)
+end
+vim.api.nvim_set_keymap("n", "<leader><leader>", ":lua keymap_function()<CR>", opts)
 
 -- Debugging
-local debugKeyMapping = {}
+local debugKeyMappig = {}
 
 local whichkey = require "which-key"
 
