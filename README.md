@@ -1,5 +1,7 @@
 #  nvim-config
 
+![Screenshot from 2023-12-23 23-32-26](https://github.com/itsvinayak/nvim-config/assets/33996594/617c0b25-a833-4da9-9ae3-54adb4fe449a)
+
 
 ## list of plugin
 
