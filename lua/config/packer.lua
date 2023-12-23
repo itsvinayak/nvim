@@ -78,8 +78,15 @@ return require("packer").startup(function(use)
     -- general debbugging
     use {
         "mfussenegger/nvim-dap",
+        requires = {
+            { "rcarriga/nvim-dap-ui" },
+            { "theHamsta/nvim-dap-virtual-text" },
+            { "jbyuki/one-small-step-for-vimkind" }, -- Optional but recommended
+        },
         config = function()
-            require('dap-install').setup()
+            require("dap-install").setup()
+            require("dap").setup()
+            require("dapui").setup()
         end
     }
     use {
@@ -106,7 +113,7 @@ return require("packer").startup(function(use)
 
     -- color scheme
     use { "ellisonleao/gruvbox.nvim" }
-    -- use {'nyoom-engineering/oxocarbon.nvim'}
+    -- use {"nyoom-engineering/oxocarbon.nvim"}
 
     -- for commenting
     use { "numToStr/Comment.nvim" }
@@ -152,7 +159,7 @@ return require("packer").startup(function(use)
     use {
         "rcarriga/nvim-notify",
         config = function()
-            require('notify').setup({
+            require("notify").setup({
                 -- other stuff
                 background_colour = "#000000"
             })
@@ -176,8 +183,8 @@ return require("packer").startup(function(use)
         requires = {
             "tami5/sqlite.lua",
             module = "sqlite",
-            { 'nvim-telescope/telescope.nvim' },
-            { 'ibhagwan/fzf-lua' }
+            { "nvim-telescope/telescope.nvim" },
+            { "ibhagwan/fzf-lua" }
         }
     }
 end)
