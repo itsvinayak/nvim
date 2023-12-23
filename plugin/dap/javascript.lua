@@ -7,11 +7,11 @@ function dapConfigMap.setup()
         node_path = "node",
         debugger_path = DEBUGGER_PATH,
         debugger_cmd = { "js-debug-adapter" },
-        adapters = {"pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost"} -- which adapters to register in nvim-dap
+        adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" } -- which adapters to register in nvim-dap
     }
 
-    for _, language in ipairs {"typescript", "javascript"} do
-        require("dap").configurations[language] = {{
+    for _, language in ipairs { "typescript", "javascript" } do
+        require("dap").configurations[language] = { {
             type = "pwa-node",
             request = "launch",
             name = "Launch file",
@@ -29,16 +29,16 @@ function dapConfigMap.setup()
             name = "Debug Jest Tests",
             trace = true, -- include debugger info
             runtimeExecutable = "node",
-            runtimeArgs = {"./node_modules/jest/bin/jest.js", "--runInBand"},
+            runtimeArgs = { "./node_modules/jest/bin/jest.js", "--runInBand" },
             rootPath = "${workspaceFolder}",
             cwd = "${workspaceFolder}",
             console = "integratedTerminal",
             internalConsoleOptions = "neverOpen"
-        }}
+        } }
     end
 
-    for _, language in ipairs {"typescriptreact", "javascriptreact"} do
-        require("dap").configurations[language] = {{
+    for _, language in ipairs { "typescriptreact", "javascriptreact" } do
+        require("dap").configurations[language] = { {
             type = "pwa-chrome",
             name = "Attach - Remote Debugging",
             request = "attach",
@@ -53,10 +53,8 @@ function dapConfigMap.setup()
             name = "Launch Chrome",
             request = "launch",
             url = "http://localhost:3000"
-        }}
+        } }
     end
 end
-
-
 
 return dapConfigMap

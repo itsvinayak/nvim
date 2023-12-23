@@ -1,9 +1,9 @@
 local dapConfigMap = {}
 
 local function configure()
-    local dap_install = require "dap-install"
+    local dap_install = require("dap-install")
     dap_install.setup {
-      installation_path = vim.fn.stdpath "data" .. "/dapinstall/",
+        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
     }
 
     local dap_breakpoint = {
@@ -56,11 +56,10 @@ local function configure_debuggers()
 end
 
 function dapConfigMap.setup()
-    configure()                    -- Configuration
-    configure_exts()               -- Extensions
-    configure_debuggers()          -- Debugger
+    configure()           -- Configuration
+    configure_exts()      -- Extensions
+    configure_debuggers() -- Debugger
     -- Set up keymaps here
-
 end
 
 dapConfigMap.setup()
@@ -82,3 +81,4 @@ end
 
 -- Use the correct function name for setting keymaps
 vim.api.nvim_set_keymap('n', '<leader>ui', require 'dapui'.toggle, { noremap = true, silent = true })
+
