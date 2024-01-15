@@ -36,6 +36,8 @@ return require("packer").startup(function(use)
         tag = "0.1.0",
         requires = { { "nvim-lua/plenary.nvim" } }
     }
+    -- wakatime
+    use { "wakatime/vim-wakatime" }
     -- barbar
     use "nvim-tree/nvim-web-devicons" -- OPTIONAL: for file icons
     use "lewis6991/gitsigns.nvim"     -- OPTIONAL: for git status

@@ -1,11 +1,7 @@
-local dapConfigMap = {}
+local dap = require("dap")
+local dapui = require("dapui")
 
 local function configure()
-    local dap_install = require("dap-install")
-    dap_install.setup {
-        installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-    }
-
     local dap_breakpoint = {
         breakpoint = {
             text = "",
@@ -37,8 +33,8 @@ local function configure_exts()
         commented = true,
     }
 
-    local dap, dapui = require("dap"), require("dapui")
     dapui.setup {} -- use default
+
     dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
     end
@@ -55,19 +51,18 @@ local function configure_debuggers()
     require("plugin.dap.javascript").setup() -- Adjust this path
 end
 
-function dapConfigMap.setup()
+function dapConfigMap()
     configure()           -- Configuration
     configure_exts()      -- Extensions
     configure_debuggers() -- Debugger
     -- Set up keymaps here
+    vim.api.nvim_set_keymap('n', '<leader>ui', ':lua require("dapui").toggle()<CR>', { noremap = true, silent = true })
 end
 
-dapConfigMap.setup()
+dapConfigMap()
 
 -- Additional setup for dapui
-require("dapui").setup()
-
-local dap, dapui = require("dap"), require("dapui")
+dapui.setup {}
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open({})
@@ -78,7 +73,3 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close({})
 end
-
--- Use the correct function name for setting keymaps
-vim.api.nvim_set_keymap('n', '<leader>ui', require 'dapui'.toggle, { noremap = true, silent = true })
-
