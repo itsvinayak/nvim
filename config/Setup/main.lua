@@ -1,11 +1,3 @@
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost packer.lua source ]] ..
-    vim.fn.expand('~/.config/nvim/plugin/packer_user_config.lua') .. [[ | PackerCompile
-  augroup end
-]])
-
 -- hidding tmux status line
 vim.cmd([[
   augroup DisableTmuxStatus
