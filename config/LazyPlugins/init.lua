@@ -18,7 +18,14 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugins
 -- ============================================================================
-require("lazy").setup({require("plugin.ui"), require("plugin.utils")});
+require("lazy").setup({
+                require("plugin.ui"),
+                require("plugin.utils"),
+                require("plugin.mason"),
+                require("plugin.linting"),
+                require("plugin.conform"),
+                require("plugin.cmp")
+            });
 
 -- Key mappings
 
@@ -78,6 +85,20 @@ function whichKeyMapping.setup()
         nowait = false
     })
 end
+
+-- plugin config
+require("mason").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = { "lua_ls", "tsserver", "jsonls", "mdx_analyzer", "pylsp", "sqlls", "yamlls", "dockerls", "bashls", "typos_lsp" },
+    automatic_installation = true,
+}
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
+require("ufoConfig")
+
 
 require("notify")("LazyVim: Loading plugins...", "info")
 whichKeyMapping.setup()
