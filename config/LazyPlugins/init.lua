@@ -25,7 +25,10 @@ require("lazy").setup({
                 require("plugin.mason"),
                 require("plugin.linting"),
                 require("plugin.conform"),
-                require("plugin.cmp")
+                require("plugin.treesitter"),
+                require("plugin.lsp"),
+                require("plugin.markdown"),
+                require("plugin.telescope")
             });
 
 -- Key mappings
@@ -99,7 +102,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 require("config.LazyPlugins.ufoConfig")
-
+require("config.LazyPlugins.illuminate")
+require("config.LazyPlugins.tmux")
+require("config.LazyPlugins.neoclip")
+require("config.LazyPlugins.telescope")
 
 require("notify")("LazyVim: Loading plugins...", "info")
 whichKeyMapping.setup()
