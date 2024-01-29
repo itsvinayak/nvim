@@ -16,6 +16,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+
 -- Plugins
 -- ============================================================================
 require("lazy").setup({
@@ -97,7 +98,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require("conform").format({ bufnr = args.buf })
   end,
 })
-require("ufoConfig")
+require("config.LazyPlugins.ufoConfig")
 
 
 require("notify")("LazyVim: Loading plugins...", "info")

@@ -37,7 +37,7 @@ return {
     },
     {
         "kevinhwang91/nvim-ufo",
-        requires = "kevinhwang91/promise-async"
+        dependencies = "kevinhwang91/promise-async"
     },
     {"folke/neodev.nvim"},
     {
