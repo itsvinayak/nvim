@@ -7,6 +7,7 @@ vim.cmd([[
 ]])
 
 
+
 local augroup = vim.api.nvim_create_augroup
 local luaNvimGroup = augroup('luaNvim', {})
 local luaNvimFormatGroup = augroup('luaNvim', {})
@@ -48,6 +49,9 @@ vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- horizontal line
+vim.opt.cursorline = true
+
 vim.opt.shiftwidth = 4
 vim.opt.smarttab = true
 vim.opt.expandtab = true
@@ -71,7 +75,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
 
 
 
