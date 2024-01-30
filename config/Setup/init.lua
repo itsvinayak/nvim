@@ -75,6 +75,11 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.timeoutlen = 500
+-- filetype plugin on
+vim.opt.mouse = "a"
+vim.cmd("filetype plugin on")
+vim.cmd("syntax on")
 
 
 
