@@ -12,16 +12,21 @@ vim.api.nvim_set_keymap("n", "<C-d>", "<C-d>zz", opts)
 vim.api.nvim_set_keymap("n", "<C-u>", "<C-u>zz", opts)
 
 -- Tab navigation
-vim.api.nvim_set_keymap("n", "<C-TAB>", "<Cmd>tabPrevious<CR>", opts)
-vim.api.nvim_set_keymap("n", "<TAB>", "<Cmd>tabNext<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-TAB>", "<Cmd>tabprevious<CR>", opts)
+vim.api.nvim_set_keymap("n", "<TAB>", "<Cmd>tabnext<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-n>", "<Cmd>tabnew<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-w>", "<Cmd>tabClose<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-w>", "<Cmd>tabclose<CR>", opts)
 
 -- Miscellaneous mappings
-vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', opts)
-vim.api.nvim_set_keymap("v", "<leader>y", '"+y', opts)
-vim.api.nvim_set_keymap("n", "<leader>y", '"+y', opts)
-vim.api.nvim_set_keymap("n", "<leader>Y", '"+Y', opts)
+vim.cmd('set clipboard=unnamedplus')
+-- Copy to system clipboard
+vim.api.nvim_set_keymap('n', '<leader>y', '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>y', '"+y', { noremap = true, silent = true })
+
+-- Paste from system clipboard
+vim.api.nvim_set_keymap('n', '<leader>p', '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>p', '"+p', { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap("n", "<leader>d", '"_d', opts)
 vim.api.nvim_set_keymap("v", "<leader>d", '"_d', opts)
 vim.api.nvim_set_keymap("i", "<C-c>", "<Esc>", opts)
