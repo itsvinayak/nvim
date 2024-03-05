@@ -1,4 +1,7 @@
 local lsp = require('lsp-zero')
+require('lspconfig').lua_ls.setup({})
+-- npm i -g pyright
+require'lspconfig'.pyright.setup{}
 
 lsp.preset("recommended")
 

@@ -7,4 +7,5 @@ require("config.LazyPlugins.init")
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
 
+
 require("notify")("configuration loaded . . .", "info")
